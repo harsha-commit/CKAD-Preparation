@@ -1,0 +1,36 @@
+# for as whole config
+envFrom:
+	- configMapRef:
+		name: app-config
+
+# for as whole secret
+envFrom:
+	- secretRef:
+		name: app-secret
+
+SecurityContext 
+- at pod level
+- at container level
+
+ServiceAccounts**
+
+Tolerations at pod-level
+
+k create cm cfm --from-literal=foo=lala 
+	--from-literal=foo2=lolo
+k describe cm cfm
+k create cm cfm2 --from-file=app.properties
+k create cm cfm2 --from-env=app.properties
+
+generic is important for secrets
+
+cat >> config.txt << EOF
+key1=value1
+key2=value2
+EOF
+
+// verify
+kubectl exec -it nginx -- env
+
+
+k run yo-namaste --image=nginx --serviceaccount=namaste

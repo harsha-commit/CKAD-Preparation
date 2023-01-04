@@ -1,0 +1,3 @@
+k logs busybox -f # follow the logs 
+
+kubectl top nodes

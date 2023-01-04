@@ -1,0 +1,41 @@
+Core Concepts:
+
+k create ns mynamespace
+k run nginx --image=nginx -n mynamespace
+
+k run nginx --image=nginx -n mynamespace --dry-run=client -o yaml > abc.yaml
+
+k run busybox --image=busybox -- env (for args)
+k run busybox --image=busybox --command -- env (for command)
+k run busybox --image=busybox --command -- "sleep 3600" (together)
+
+Resource Quota:
+k create quota myrq --hard=cpu=1,memory=1G,pods=2 --dry-run=client -o yaml
+
+k get pods -A // all namespaces
+ 
+k run nginx --image=nginx --port=80 // run and expose
+ 
+k set image pod/nginx nginx=nginx:1.7.1
+k set image deployment/deploy nginx=nginx:1.7.1
+k get po nginx -w // watch it
+
+while run pod command use --rm => temporary pod
+
+k run busybox --image=busybox --rm -it --restart=Never -- wget -O- 10.1.1.131:80
+k exec -it podname -- wget -0- 10.1.1.131:80
+
+logs about the previous instance:
+k logs nginx -p
+
+k exec -it nginx -- /bin/sh
+
+k run busybox --image=busybox -it --restart=Never -- /bin/sh -c 'echo hello world'
+
+k run nginx --image=nginx --env=var1=val1
+
+search in cheatsheet
+
+----------------------------------------------------------------------
+
+

@@ -1,0 +1,16 @@
+Cannot create two containers at once so use yaml file
+k run busybox --image=busybox --restart=Never -o yaml --dry-run=client -- /bin/sh -c 'echo hello;sleep 3600' > pod.yaml
+vi pod.yaml
+
+# Choosing a container (in case of multi, keep an eye on it)
+kubectl exec -it busybox -c busybox2 -- /bin/sh
+kubectl logs busybox -c busybox1
+
+Refer initContainer
+
+// install curl and get default page
+kubectl exec -it  multi-cont-pod -c sidecar-container -- sh
+# apt-get update && apt-get install -y curl
+# curl localhost
+
+kubectl top pod busybox --containers # metrics

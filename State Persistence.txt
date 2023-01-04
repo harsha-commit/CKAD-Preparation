@@ -1,0 +1,24 @@
+k run busybox --image=busy-box --dry-run=client -o yaml -- 
+ /bin/sh -c 'sleep 3600' > abc.yaml
+
+# same line as container
+volumes:
+	- name: myvolume
+	  emptyDir: {}
+
+# inside container
+volumeMounts:
+	- name: myvolume
+	  mountPath: /etc/foo
+
+k exec -it busybox -c busybox2 -- /bin/sh
+
+PersistentVolume:
+spec:
+	hostPath:
+		path: /etc/foo
+
+Show first columns
+Save into local folder
+
+

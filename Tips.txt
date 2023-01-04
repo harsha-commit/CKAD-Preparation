@@ -1,0 +1,10 @@
+export x = 'dry-run=client -o yaml'
+export f = '--force --grace-period=0'
+
+k run nginx --image=nginx $x $f > av.yaml
+
+k label node node01 app=v1,env=prod
+
+selector:
+	matchLabels:
+		app: env
